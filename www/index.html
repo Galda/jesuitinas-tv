@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <title>Jesuitinas TV</title>  
+  
+  <link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
+  <link rel="stylesheet" href="styles/app.css"/>
+  <link rel="stylesheet" href="styles/onsen-css-components-blue-basic-theme.css">  
+
+  
+  <script src="lib/onsen/js/angular/angular.1.4.min.js"></script>    
+  <script src="lib/onsen/js/angular/angular-sanitize.js"></script>    
+  <script src="lib/onsen/js/onsenui.js"></script>     
+  
+  <script src="cordova.js"></script>  
+  <script src="js/core_functions.js"></script>  
+  <script src="js/functions.js"></script>  
+  <script src="js/app.js"></script>  
+  <script>
+    ons.ready(function() {
+    });
+  </script>
+</head>
+
+<body ng-controller="AppController">    
+     
+  <ons-navigator var="navi">
+    <ons-page>
+      <ons-toolbar>
+        <div class="center">Listado de vídeos</div>
+      </ons-toolbar>
+      <ons-list ng-controller="MasterController">
+        <ons-list-item modifier="chevron" class="item" ng-repeat="item in items" ng-click="showDetail($index)">
+		<div class="item-container">
+          <ons-row>
+            <ons-col>
+              <div class="item-thum"  style="background-image:url('http://www.jesuitinasdonosti.tv/upload/secciones-publicas/{{item.img.fichero}}');background-size:cover;background-position:center center;background-repeat:no-repeat;"></div>
+            </ons-col>
+          </ons-row>
+          <ons-row>
+            <ons-col>
+              <span class="item-title">{{item.titulo}}</span>
+              <span class="item-label">{{item.label}}</span>
+			
+              <p class="item-desc" ng-bind-html="item.desc"></p>
+            </ons-col>
+          </ons-row>    
+		</div>
+        </ons-list-item>
+      </ons-list>
+    </ons-page>
+  </ons-navigator>
+
+  <ons-template id="detail.html">
+    <ons-page ng-controller="DetailController" class="detail">
+
+      <ons-toolbar>
+        <div class="left"><ons-back-button></ons-back-button></div>
+        <div class="center">Detalle </div>
+      </ons-toolbar>
+	  <ons-list modifier="inset" style="margin-top: 10px">
+        <ons-list-item>
+			<ons-col class="action-col">
+				<div class="header-detail">
+					<div class="video" ng-bind-html="item.video"></div>
+				</div>
+			</ons-col>
+        </ons-list-item>
+      <ons-list modifier="inset">
+        <ons-list-item>	
+			<span class="item-title">{{item.titulo}}</span>
+			<p class="item-desc" ng-bind-html="item.long_desc"></p>
+        </ons-list-item>
+		
+        <ons-list-item modifier="chevron" ng-click="doSomething()">
+          <ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>
+          Valora este vídeo
+        </ons-list-item>
+      </ons-list>
+
+      <ons-list style="margin-top: 10px">
+		<ons-list-header>Vídeos relacionados</ons-list-header>
+        <ons-list-item class="item" ng-repeat="i in [1,2,3]">
+          <header>
+            <span class="item-title">Lorem ipsum dolor sit amet</span>
+          </header>
+          <p class="item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </ons-list-item>
+      </ons-list>
+
+      <br>
+
+    </ons-page>
+  </ons-template>
+
+</body>  
+</html>
