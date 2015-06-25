@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="tv.jesuitinasdonosti.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>JesuitinasAppTv</name>
+	<icon src="icon.png" />
+    <name>Jesuitinas TV</name>
     <description>
         Listado de los videos de la web.
     </description>
