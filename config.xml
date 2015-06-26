@@ -2,7 +2,7 @@
 <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "tv.jesuitinasdonosti.app"
-    version     = "0.0.2" >
+    version     = "0.0.2">
 	<gap:plugin name="org.apache.cordova.splashscreen"/>
 	<icon src="icon.png"/>
 	
@@ -16,7 +16,8 @@
     <content src="index.html"/>
 
 	
-	<preference name="SplashScreenDelay" value="10000" /
+	<preference name="SplashScreenDelay" value="10000" />
 	
     <access origin="*"/>
 </widget>
+	
