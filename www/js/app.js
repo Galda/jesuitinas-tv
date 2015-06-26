@@ -1,30 +1,60 @@
 (function(){
   'use strict';
   var myApp = angular.module('app', ['onsen','ngSanitize']);
-
+  var Mydialog = '';
   myApp.controller('AppController', function($scope, $data) {
     $scope.doSomething = function() {
       ons.notification.alert({message: 'Poner función aquí'});
     };
+	
+	$scope.searchVideo = function(toFind) {
+		if(toFind){
+			alert(toFind);
+			if($scope.dialog )$scope.dialog.hide();
+			
+			//Ejecutar constructor - factoria- de resultados 
+		}else{
+			alert('Pon algo para buscar majo');
+		}
+	}
 
   });
   
   //Controladores  
-  myApp.controller('DetailController', function($scope, $data) {
-    $scope.item = $data.selectedItem;
-    //$scope.test = JSON.stringify($data.selectedItem); //TEST
-  });
+	  myApp.controller('DetailController', function($scope, $data) {
+		$scope.item = $data.selectedItem;
+		//$scope.test = JSON.stringify($data.selectedItem); //TEST
+	  });
 
-  myApp.controller('MasterController', function($scope, $data) {
-    $scope.items = $data.items;
-    
-    $scope.showDetail = function(index) {
-      var selectedItem = $data.items[index];
-      $data.selectedItem = selectedItem;
-      $scope.navi.pushPage('detail.html', {title : selectedItem.title});
-    };
-  });
+	  myApp.controller('MasterController', function($scope, $data) {
+		$scope.items = $data.items;
+		
+		$scope.showDetail = function(index) {
+		  var selectedItem = $data.items[index];
+		  $data.selectedItem = selectedItem;
+		  $scope.navi.pushPage('detail.html', {title : selectedItem.title});
+		};
+	  });
+	
+	  myApp.controller('DialogController', function($scope) {
 
+		  $scope.show = function(dlg) {
+			if (!Mydialog) {	//<- Mediante esta variable podríamos conseguir que no se borre el contenido, simplemente haciendo SHOW en el else
+			  ons.createDialog(dlg).then(function(dialog) {
+				Mydialog = dialog;
+				dialog.show();
+			  });
+			}else{
+				ons.createDialog(dlg).then(function(dialog) {	//Lo vuelve a crear, asi que se regenera y borra el contenido anterior!
+					Mydialog = dialog;
+					dialog.show();
+				});
+			}
+		  }
+	});
+	
+	
+  //Factorias
   myApp.factory('$data', function($http,$sce) {
 	var data = {};
 	data.items = [];
@@ -97,4 +127,5 @@ document.addEventListener("deviceready", onDeviceReady, false);
 //
 function onDeviceReady() {
 	// var ref = window.open('http://apache.org', '_blank', 'location=yes');
+	ons.bootstrap();
 }

@@ -8,8 +8,8 @@
   <title>Jesuitinas TV</title>  
   
   <link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
-  <link rel="stylesheet" href="styles/app.css"/>
   <link rel="stylesheet" href="styles/onsen-css-components-blue-basic-theme.css">  
+  <link rel="stylesheet" href="styles/app.css"/>
 
   
   <script src="lib/onsen/js/angular/angular.1.4.min.js"></script>    
@@ -23,9 +23,6 @@
   <script>
     ons.ready(function() {
     });
-	document.addEventListener('deviceready', function() {
-	  navigator.splashscreen.show();
-	});
   </script>
 </head>
 
@@ -33,8 +30,13 @@
      
   <ons-navigator var="navi">
     <ons-page>
-      <ons-toolbar>
+      <ons-toolbar >
         <div class="center">Listado de vídeos</div>
+		<div class="right" ng-controller="DialogController">
+			<ons-toolbar-button ng-click="show('login.html')">
+				<ons-icon icon="ion-ios7-search-strong ion-android-search" fixed-width="false" style="font-size: 26px; vertical-align: -4px;"></ons-icon>
+			</ons-toolbar-button>
+        </div>
       </ons-toolbar>
       <ons-list ng-controller="MasterController">
         <ons-list-item modifier="chevron" class="item" ng-repeat="item in items" ng-click="showDetail($index)">
@@ -100,5 +102,25 @@
     </ons-page>
   </ons-template>
 
+  
+  
+
+	<ons-template id="login.html">
+	  <ons-dialog var="dialog" cancelable>
+		<ons-toolbar inline>
+			<div class="center">
+			  Buscador
+			</div>
+		</ons-toolbar>
+		
+		  <p>
+			<input placeholder="" id="toFind" ng-model="toFind" type="search" class="search-input " >
+		  </p>
+				
+		  <p>
+			<ons-button modifier="large" class="ion-search" ng-click="searchVideo(toFind)">Buscar</ons-button>
+		  </p>
+	  </ons-dialog> 
+	</ons-template>
 </body>  
 </html>
