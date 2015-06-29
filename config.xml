@@ -2,7 +2,7 @@
 <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "tv.jesuitinasdonosti.app"
-    version     = "0.0.3">
+    version     = "0.0.4">
 	<gap:plugin name="org.apache.cordova.splashscreen"/>
 	<icon src="icon.png"/>
 	
@@ -18,7 +18,7 @@
 
 	<gap:splash src="www/res/screen/android/screen-hdpi-portrait.png"/>
 	<preference name="LoadingDialog" value="My Title,My Message"/>	
-	<preference name="SplashScreenDelay" value="4000"/>
+	<preference name="SplashScreenDelay" value="10000"/>
 	<preference name="FadeSplashScreen" value="true" />
 	
 	<access origin="*"/>
