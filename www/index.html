@@ -21,19 +21,20 @@
   <script src="js/functions.js"></script>  
   <script src="js/app.js"></script>  
   <script>
-    ons.ready(function() {
-    });
+    ons.ready(function() {});
+	document.addEventListener('deviceready', function() {
+	  navigator.splashscreen.show();
+	});
   </script>
 </head>
 
 <body ng-controller="AppController">    
-     
   <ons-navigator var="navi">
     <ons-page>
       <ons-toolbar >
         <div class="center">Listado de vídeos</div>
-		<div class="right" ng-controller="DialogController">
-			<ons-toolbar-button ng-click="show('login.html')">
+		<div class="right">
+			<ons-toolbar-button ng-click="showSearch('login.html')">
 				<ons-icon icon="ion-ios7-search-strong ion-android-search" fixed-width="false" style="font-size: 26px; vertical-align: -4px;"></ons-icon>
 			</ons-toolbar-button>
         </div>
@@ -103,8 +104,34 @@
   </ons-template>
 
   
-  
-
+	<ons-template id="searchData.html">
+		 <ons-page>
+			<ons-toolbar>
+				<div class="left"><ons-back-button></ons-back-button></div>
+				<div class="center">Resultado de la búsqueda</div>
+			</ons-toolbar>
+			<ons-list >
+				<ons-list-item modifier="chevron" class="item" ng-repeat="item in searchData" ng-click="showDetail($index)">
+				<div class="item-container">
+				  <ons-row>
+					<ons-col>
+					  <div class="item-thum"  style="background-image:url('http://www.jesuitinasdonosti.tv/upload/secciones-publicas/{{item.img.fichero}}');background-size:cover;background-position:center center;background-repeat:no-repeat;"></div>
+					</ons-col>
+				  </ons-row>
+				  <ons-row>
+					<ons-col>
+					  <span class="item-title">{{item.titulo}}</span>
+					  <span class="item-label">{{item.label}}</span>
+					
+					  <p class="item-desc" ng-bind-html="item.desc"></p>
+					</ons-col>
+				  </ons-row>    
+				</div>
+				</ons-list-item>
+			</ons-list>
+		</ons-page>	
+	</ons-template>
+	
 	<ons-template id="login.html">
 	  <ons-dialog var="dialog" cancelable>
 		<ons-toolbar inline>

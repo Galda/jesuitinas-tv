@@ -6,22 +6,25 @@
     $scope.doSomething = function() {
       ons.notification.alert({message: 'Poner función aquí'});
     };
-	
-	$scope.searchVideo = function(toFind) {
-		if(toFind){
-			alert(toFind);
-			if($scope.dialog )$scope.dialog.hide();
-			
-			//Ejecutar constructor - factoria- de resultados 
+
+	$scope.showSearch = function(dlg) {
+		if (!Mydialog) {	//<- Mediante esta variable podríamos conseguir que no se borre el contenido, simplemente haciendo SHOW en el else
+		  ons.createDialog(dlg).then(function(dialog) {
+			Mydialog = dialog;
+			dialog.show();
+		  });
 		}else{
-			alert('Pon algo para buscar majo');
+			ons.createDialog(dlg).then(function(dialog) {	//Lo vuelve a crear, asi que se regenera y borra el contenido anterior!
+				Mydialog = dialog;
+				dialog.show();
+			});
 		}
-	}
+	};
 
   });
   
   //Controladores  
-	  myApp.controller('DetailController', function($scope, $data) {
+	myApp.controller('DetailController', function($scope, $data) {
 		$scope.item = $data.selectedItem;
 		//$scope.test = JSON.stringify($data.selectedItem); //TEST
 	  });
@@ -34,25 +37,32 @@
 		  $data.selectedItem = selectedItem;
 		  $scope.navi.pushPage('detail.html', {title : selectedItem.title});
 		};
-	  });
-	
-	  myApp.controller('DialogController', function($scope) {
-
-		  $scope.show = function(dlg) {
-			if (!Mydialog) {	//<- Mediante esta variable podríamos conseguir que no se borre el contenido, simplemente haciendo SHOW en el else
-			  ons.createDialog(dlg).then(function(dialog) {
-				Mydialog = dialog;
-				dialog.show();
-			  });
-			}else{
-				ons.createDialog(dlg).then(function(dialog) {	//Lo vuelve a crear, asi que se regenera y borra el contenido anterior!
-					Mydialog = dialog;
-					dialog.show();
-				});
-			}
-		  }
 	});
 	
+
+	myApp.controller('SearchController', function($scope,searchResult) {
+		
+		$scope.searchVideo = function(toFind) {
+			if(toFind){
+				alert($scope.navi);
+				//$data.searchData = searchResult.getSearch();
+			//	alert($data.searchData);
+				if(Mydialog){
+					$scope.dialog.hide();
+				}
+				$scope.navi.pushPage('search.html', {title : toFind});
+				//Ejecutar constructor - factoria- de resultados 
+			}else{
+				alert('Pon algo para buscar majo');
+			}
+		};
+		/*
+		$scope.showDetail = function(index) {
+		  var selectedItem = $data.items[index];
+		  $data.selectedItem = selectedItem;
+		  $scope.navi.pushPage('detail.html', {title : selectedItem.title});
+		};*/
+	});
 	
   //Factorias
   myApp.factory('$data', function($http,$sce) {
@@ -107,7 +117,7 @@
 					img: img,
 					imgBig: imgBig,
 					video: 	 $sce.trustAsHtml(videoTube(mp4)) //VERIFICA QUE LA URL SE PUEDA EJECUTAR
-				}
+				};
 				
 				data.items.push(video);
 				
@@ -115,6 +125,70 @@
 		}).error(function(response) {console.log(response)});
      
       return data;
+  }); 
+  //Factorias
+  myApp.factory('searchResult', function($http,$sce) {
+	var searchData = {};
+	searchData.items = [];
+	//El AJAX de angular
+
+	factory.getSearch = function(){
+		$http.post("http://www.jesuitinasdonosti.tv/scripts/appData/index.php",'buscando')
+			.success(function(response) {
+				var lista = [];
+				angular.forEach(response,function(v,k){
+					var video = {};
+					
+					var keepGoing = true; //<- para control de bucles
+					//Saco la imagen
+					var img = '';var imgBig = '';
+					
+					if(v.archivos.img){
+						angular.forEach(v.archivos.img,function(i,ik){
+							if(keepGoing){
+								if(i.nombre){
+									img = {fichero: i.copias.social.fichero, alto:i.copias.social.y};
+									imgBig = {fichero: i.copias.social.fichero, alto:i.copias.social.y};
+									keepGoing = false;
+								}
+							}
+						});
+					}
+					
+					//Saco el vídeo
+					keepGoing = true;
+					var mp4 = '';
+					if(v.archivos.video){
+						angular.forEach(v.archivos.video,function(v,vk){
+							if(keepGoing){
+								if(v.url_video){
+									mp4 = v.url_video;
+									keepGoing = false;
+								}
+							}
+						});
+					}
+					//Guardo datos
+						//cropeo el texto
+						var clean_desc = String(v.descripcion).replace(/<[^>]+>/gm, '');
+						var short_desc = ((clean_desc.length > 120 ) ? clean_desc.substr(0,120) + ' ... ' : clean_desc);
+
+					video = {
+						titulo: v.titulo,
+						label: v.fecha_pub,
+						desc: short_desc,
+						long_desc: v.descripcion,
+						img: img,
+						imgBig: imgBig,
+						video: 	 $sce.trustAsHtml(videoTube(mp4)) //VERIFICA QUE LA URL SE PUEDA EJECUTAR
+					};
+					
+					searchData.items.push(video);
+					
+				});
+			}).error(function(response) {console.log(response)});
+		}
+    return searchData;
   });
 })();
 
@@ -127,5 +201,5 @@ document.addEventListener("deviceready", onDeviceReady, false);
 //
 function onDeviceReady() {
 	// var ref = window.open('http://apache.org', '_blank', 'location=yes');
-	ons.bootstrap();
+	//ons.bootstrap();
 }
