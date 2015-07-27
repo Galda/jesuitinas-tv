@@ -12,19 +12,16 @@
   <link rel="stylesheet" href="styles/app.css"/>
 
   
-  <script src="lib/onsen/js/angular/angular.1.4.min.js"></script>    
-  <script src="lib/onsen/js/angular/angular-sanitize.js"></script>    
-  <script src="lib/onsen/js/onsenui.js"></script>     
+  <script src="lib/onsen/js/angular/angular.1.4.min.js" type="text/javascript"></script>    
+  <script src="lib/onsen/js/angular/angular-sanitize.js" type="text/javascript"></script>    
+  <script src="lib/onsen/js/onsenui.js" type="text/javascript"></script>     
   
-  <script src="cordova.js"></script>  
-  <script src="js/core_functions.js"></script>  
-  <script src="js/functions.js"></script>  
-  <script src="js/app.js"></script>  
-  <script>
-    ons.ready(function() {});
-	document.addEventListener('deviceready', function() {
-	  navigator.splashscreen.show();
-	});
+  <script src="cordova.js" type="text/javascript"></script>  
+  <script src="js/core_functions.js" type="text/javascript"></script>  
+  <script src="js/functions.js" type="text/javascript"></script>  
+  <script src="js/app.js" type="text/javascript"></script>  
+  <script type="text/javascript">
+    /*ons.ready(function() {});	*/
   </script>
 </head>
 
@@ -39,6 +36,7 @@
 			</ons-toolbar-button>
         </div>
       </ons-toolbar>
+		
       <ons-list ng-controller="MasterController">
         <ons-list-item modifier="chevron" class="item" ng-repeat="item in items" ng-click="showDetail($index)">
 		<div class="item-container">
@@ -97,57 +95,63 @@
           <p class="item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </ons-list-item>
       </ons-list>
-
-      <br>
-
     </ons-page>
   </ons-template>
 
-  
-	<ons-template id="searchData.html">
-		 <ons-page>
-			<ons-toolbar>
-				<div class="left"><ons-back-button></ons-back-button></div>
-				<div class="center">Resultado de la búsqueda</div>
-			</ons-toolbar>
-			<ons-list >
-				<ons-list-item modifier="chevron" class="item" ng-repeat="item in searchData" ng-click="showDetail($index)">
-				<div class="item-container">
-				  <ons-row>
-					<ons-col>
-					  <div class="item-thum"  style="background-image:url('http://www.jesuitinasdonosti.tv/upload/secciones-publicas/{{item.img.fichero}}');background-size:cover;background-position:center center;background-repeat:no-repeat;"></div>
-					</ons-col>
-				  </ons-row>
-				  <ons-row>
-					<ons-col>
-					  <span class="item-title">{{item.titulo}}</span>
-					  <span class="item-label">{{item.label}}</span>
-					
-					  <p class="item-desc" ng-bind-html="item.desc"></p>
-					</ons-col>
-				  </ons-row>    
-				</div>
-				</ons-list-item>
-			</ons-list>
-		</ons-page>	
-	</ons-template>
-	
-	<ons-template id="login.html">
+	<ons-template id="login.html" >
 	  <ons-dialog var="dialog" cancelable>
 		<ons-toolbar inline>
 			<div class="center">
-			  Buscador
+			  Buscar vídeo
 			</div>
 		</ons-toolbar>
-		
 		  <p>
 			<input placeholder="" id="toFind" ng-model="toFind" type="search" class="search-input " >
 		  </p>
-				
-		  <p>
+			<ons-button class="btn large" onclick="vibrate();">Vibrate</ons-button>
+			<ons-button class="btn large" onclick="show_pic();">Foto</ons-button>
+			<ons-button class="btn large" onclick="window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl');">Share</ons-button>
+		  <p ng-controller="SearchController">
 			<ons-button modifier="large" class="ion-search" ng-click="searchVideo(toFind)">Buscar</ons-button>
 		  </p>
 	  </ons-dialog> 
 	</ons-template>
+  
+	<ons-template id="searchData.html">
+		 <ons-page ng-controller="SearchController">
+			<ons-toolbar>
+				<div class="left"><ons-back-button></ons-back-button></div>
+				<div class="center">Resultados de la búsqueda</div>
+			</ons-toolbar>
+			 <div ng-if="!searchResultTotal">
+				<p>No hay resultados!</p>
+				<ons-button modifier="large" class="ion-search" ng-click="showSearch('login.html')"> Nueva búsqueda</ons-button>
+			 </div>
+			 <div ng-if="searchResultTotal">
+				 <p><strong>Buscando</strong> "{{searchString}}"</p>
+				 <p>Mostrando {{searchResultTotal}} Resultados</p>
+				<ons-list>
+					<ons-list-item modifier="chevron" class="item" ng-repeat="item in searchRes" ng-click="showDetail($index)">
+					<div class="item-container">
+					  <ons-row>
+						<ons-col>
+						  <div class="item-thum"  style="background-image:url('http://www.jesuitinasdonosti.tv/upload/secciones-publicas/{{item.img.fichero}}');background-size:cover;background-position:center center;background-repeat:no-repeat;"></div>
+						</ons-col>
+					  </ons-row>
+					  <ons-row>
+						<ons-col>
+						  <span class="item-title">{{item.titulo}}</span>
+						  <span class="item-label">{{item.label}}</span>
+						
+						  <p class="item-desc" ng-bind-html="item.desc"></p>
+						</ons-col>
+					  </ons-row>    
+					</div>
+					</ons-list-item>
+				</ons-list>
+			</div>
+		</ons-page>	
+	</ons-template>
+	
 </body>  
 </html>

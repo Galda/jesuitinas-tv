@@ -3,7 +3,7 @@
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "tv.jesuitinasdonosti.app"
     version     = "0.0.4">
-	<gap:plugin name="org.apache.cordova.splashscreen"/>
+
 	<icon src="icon.png"/>
 	
     <name>Jesuitinas TV</name>
@@ -16,14 +16,10 @@
     <content src="index.html"/>
 	<preference name="permissions" value="none"/>
 
-	<gap:splash src="www/res/screen/android/screen-hdpi-portrait.png"/>
-	<preference name="LoadingDialog" value="My Title,My Message"/>	
-	<preference name="SplashScreenDelay" value="10000"/>
-	<preference name="FadeSplashScreen" value="true" />
-	
 	<access origin="*"/>
 	<plugin name="cordova-plugin-whitelist" version="1"/>
-
+	<gap:plugin name="nl.x-services.plugins.socialsharing" />
+	
 	<allow-intent href="http://*/*"/>
 	<allow-intent href="https://*/*"/>
 	<allow-intent href="tel:*"/>
