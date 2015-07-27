@@ -80,7 +80,7 @@
 			<p class="item-desc" ng-bind-html="item.long_desc"></p>
         </ons-list-item>
 		
-        <ons-list-item modifier="chevron" ng-click="shareMe(item.titulo);">
+        <ons-list-item modifier="chevron" ng-click="window.plugins.socialsharing.share(item.titulo);">
           <ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>
           Comparte este vídeo
         </ons-list-item>

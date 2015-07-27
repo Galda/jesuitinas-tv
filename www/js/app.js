@@ -241,7 +241,7 @@ function show_pic() {
         targetHeight: 100
     });
 }
-
+/*
 function shareMe(msg,asunto,img,link){
-	window.plugins.socialsharing.share(msg, asunto,img,link);
-}
+	msg, asunto,img,link);
+}*/
