@@ -80,11 +80,12 @@
 			<p class="item-desc" ng-bind-html="item.long_desc"></p>
         </ons-list-item>
 		
-        <ons-list-item modifier="chevron" onclick="window.plugins.socialsharing.share(item.titulo, 'Optional title', null, 'http://www.x-services.nl')"">
+        <ons-list-item modifier="chevron" onclick="window.plugins.socialsharing.share('Optional message', 'Optional title', null, 'http://www.x-services.nl')"">
           <ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>
 		  ¡Comparte este vídeo!
 		</ons-list-item>
       </ons-list>
+			<button onclick="window.plugins.socialsharing.share('Optional message', 'Optional title', 'https://www.google.nl/images/srpr/logo4w.png', null)">image only</button>
 
       <ons-list style="margin-top: 10px">
 		<ons-list-header>Vídeos relacionados</ons-list-header>
