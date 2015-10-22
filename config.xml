@@ -5,7 +5,7 @@
     version     = "0.0.4">
 
 	<icon src="icon.png"/>
-	
+	  <preference name="phonegap-version" value="3.5.0" /> 
     <name>Jesuitinas TV</name>
     <description>
         Listado de los videos de la web.
