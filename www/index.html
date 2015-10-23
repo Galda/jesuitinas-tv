@@ -50,7 +50,7 @@
               <span class="item-title">{{item.titulo}}</span>
               <span class="item-label">{{item.label}}</span>
 			
-              <p class="item-desc" ng-bind-html="item.desc"></p>
+              <p class="item-desc"  ng-bind-html="item.desc"></p>
             </ons-col>
           </ons-row>    
 		</div>
@@ -77,10 +77,11 @@
       <ons-list modifier="inset">
         <ons-list-item>	
 			<span id="titulo_articulo" class="item-title">{{item.titulo}}</span>
-			<p id="dsc_articulo" class="item-desc" rel="{{item.desc}}" ng-bind-html="item.long_desc"></p>
+			<p class="item-desc"  ng-bind-html="item.long_desc"></p>
+			<p class="item-desc hidden"  id="dsc_articulo"  ng-bind-html="item.desc"></p>
         </ons-list-item>
 		
-        <ons-list-item modifier="chevron" onclick="window.plugins.socialsharing.share(document.getElementById('titulo_articulo').innerHTML, document.getElementById('dsc_articulo').getAttribute('rel'), null,null)">
+        <ons-list-item modifier="chevron" onclick="window.plugins.socialsharing.share(document.getElementById('titulo_articulo').innerHTML, document.getElementById('dsc_articulo').innerHTML, null,null)">
           <ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>¡Comparte este vídeo!</ons-list-item>
       </ons-list>
       <ons-list style="margin-top: 10px">
