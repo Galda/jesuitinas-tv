@@ -134,6 +134,7 @@
 					long_desc: v.descripcion,
 					img: img,
 					imgBig: imgBig,
+					mp4: mp4,
 					video: 	 $sce.trustAsHtml(videoTube(mp4)) //VERIFICA QUE LA URL SE PUEDA EJECUTAR
 				};
 				
@@ -194,6 +195,7 @@
 					long_desc: v.descripcion,
 					img: img,
 					imgBig: imgBig,
+					mp4: mp4,
 					video: 	 $sce.trustAsHtml(videoTube(mp4)) //VERIFICA QUE LA URL SE PUEDA EJECUTAR
 				};
 				
