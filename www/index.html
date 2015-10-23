@@ -76,14 +76,15 @@
         </ons-list-item>
       <ons-list modifier="inset">
         <ons-list-item>	
-			<span class="item-title">{{item.titulo}}</span>
+			<span id="titulo_articulo" class="item-title">{{item.titulo}}</span>
 			<p class="item-desc" ng-bind-html="item.long_desc"></p>
         </ons-list-item>
 		
         <ons-list-item modifier="chevron" onclick="window.plugins.socialsharing.share('Optional message', 'Optional title', null, 'http://www.x-services.nl')"">
           <ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>¡Comparte este vídeo!</ons-list-item>
 			<button onclick="window.plugins.socialsharing.share(item.titulo)">message sin comillas</button>
-			<button onclick="window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'http://jesuitinasdonosti.tv/img/logo.png', 'http://www.x-services.nl')">message, subject, image and link</button>
+			<button onclick="window.plugins.socialsharing.share('My text', 'My subject', 'http://www.jesuitinasdonosti.tv/img/logo.png', null, function(){alert('ok')}, function(e){alert('error: '+ e)})">message, subject, image and link</button>
+			<button onclick="window.plugins.socialsharing.share(document.getElementById('titulo_articulo').innerHTML, null, null, function() {console.log('share ok');}, function(errormsg){alert(errormsg);})">Shareme</button>
       </ons-list>
       <ons-list style="margin-top: 10px">
 		<ons-list-header>Vídeos relacionados</ons-list-header>

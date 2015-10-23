@@ -5,7 +5,6 @@
     version     = "0.0.4">
 
 	<icon src="icon.png"/>
-	  <preference name="phonegap-version" value="3.5.0" /> 
     <name>Jesuitinas TV</name>
     <description>
         Listado de los videos de la web.
@@ -21,6 +20,25 @@
 	<gap:plugin name="org.apache.cordova.vibration" />
 	<gap:plugin name="nl.x-services.plugins.socialsharing" />
 	
+    <preference name="phonegap-version" value="3.7.0" />
+    <!--<preference name="orientation" value="portrait" />-->
+    <preference name="target-device" value="universal" />
+    <preference name="fullscreen" value="false" />
+    <preference name="webviewbounce" value="true" />
+    <preference name="prerendered-icon" value="true" />
+    <preference name="stay-in-webview" value="false" />
+    <preference name="ios-statusbarstyle" value="black-opaque" />
+    <preference name="detect-data-types" value="true" />
+    <preference name="exit-on-suspend" value="false" />
+    <preference name="show-splash-screen-spinner" value="true" />
+    <preference name="auto-hide-splash-screen" value="true" />
+    <preference name="disable-cursor" value="false" />
+    <preference name="android-minSdkVersion" value="8" />
+    <preference name="android-targetSdkVersion" value="19" />
+    <preference name="android-installLocation" value="auto" />
+    <preference name="SplashScreenDelay" value="2000" />
+  
+  
 	<allow-intent href="http://*/*"/>
 	<allow-intent href="https://*/*"/>
 	<allow-intent href="tel:*"/>
