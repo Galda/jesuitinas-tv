@@ -77,7 +77,7 @@
       <ons-list modifier="inset">
         <ons-list-item>	
 			<span id="titulo_articulo" class="item-title">{{item.titulo}}</span>
-			<p id="dsc_articulo" class="item-desc" rel="item.desc" ng-bind-html="item.long_desc"></p>
+			<p id="dsc_articulo" class="item-desc" rel="{{item.desc}}" ng-bind-html="item.long_desc"></p>
         </ons-list-item>
 		
         <ons-list-item modifier="chevron" onclick="window.plugins.socialsharing.share(document.getElementById('titulo_articulo').innerHTML, document.getElementById('dsc_articulo').getAttribute('rel'), null,null)">
