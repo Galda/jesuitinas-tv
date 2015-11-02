@@ -2,12 +2,12 @@
 <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "tv.jesuitinasdonosti.app"
-    version     = "0.0.4">
+    version     = "0.1.0">
 
 	<icon src="icon.png"/>
     <name>Jesuitinas TV</name>
     <description>
-        Listado de los videos de la web.
+        Listado de los videos de la web. Pueden compartirse por watsap con imagen y link.
     </description>
     <author email="galda@prismacm.com" href="http://prismacm.com">
         Galda
