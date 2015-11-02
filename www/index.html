@@ -21,7 +21,10 @@
   <script src="js/functions.js" type="text/javascript"></script>  
   <script src="js/app.js" type="text/javascript"></script>  
   <script type="text/javascript">
-    /*ons.ready(function() {});	*/
+  /*ons.ready(function() {
+	 
+  });	
+	*/	
   </script>
 </head>
 
@@ -77,11 +80,10 @@
       <ons-list modifier="inset">
         <ons-list-item>	
 			<span id="titulo_articulo" class="item-title">{{item.titulo}}</span>
-			<p class="item-desc"  ng-bind-html="item.long_desc"></p>
-			<p class="item-desc hidden"  id="dsc_articulo"  ng-bind-html="item.desc"></p>
+			<p class="item-desc"   id="dsc_articulo"  ng-bind-html="item.long_desc"></p>
         </ons-list-item>
 		
-        <ons-list-item modifier="chevron" onclick="window.plugins.socialsharing.share(document.getElementById('titulo_articulo').innerHTML, document.getElementById('dsc_articulo').innerHTML, null,null)">
+        <ons-list-item modifier="chevron" onclick="window.plugins.socialsharing.share(document.getElementById('dsc_articulo').innerHTML, document.getElementById('titulo_articulo').innerHTML,null,null)">
           <ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>¡Comparte este vídeo!</ons-list-item>
       </ons-list>
       <ons-list style="margin-top: 10px">
@@ -149,6 +151,5 @@
 			</div>
 		</ons-page>	
 	</ons-template>
-	
 </body>  
 </html>
