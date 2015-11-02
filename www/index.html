@@ -84,7 +84,7 @@
 			<p class="item-desc" id="dsc_articulo"  ng-bind-html="item.long_desc"></p>
         </ons-list-item>
 		
-        <ons-list-item modifier="chevron" onclick="window.plugins.socialsharing.share(document.getElementById('dsc_articulo').innerHTML, document.getElementById('titulo_articulo').innerHTML,document.getElementById('img_video').innerHTML ,null)">
+        <ons-list-item modifier="chevron" onclick="window.plugins.socialsharing.share(document.getElementById('dsc_articulo').innerHTML, document.getElementById('titulo_articulo').innerHTML,document.getElementById('img_video').innerHTML ,{{item.video}})">
           <ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>¡Comparte este vídeo!</ons-list-item>
       </ons-list>
       <ons-list style="margin-top: 10px">
