@@ -73,6 +73,7 @@
         <ons-list-item>
 			<ons-col class="action-col">
 				<div class="header-detail">
+					<div id="img_video" class="hidden">http://jesuitinasdonosti.tv/upload/secciones-publicas/{{imgBig.fichero}}</div>
 					<div class="video" id="link-video" rel="item.mp4" ng-bind-html="item.video"></div>
 				</div>
 			</ons-col>
@@ -80,10 +81,10 @@
       <ons-list modifier="inset">
         <ons-list-item>	
 			<span id="titulo_articulo" class="item-title">{{item.titulo}}</span>
-			<p class="item-desc"   id="dsc_articulo"  ng-bind-html="item.long_desc"></p>
+			<p class="item-desc" id="dsc_articulo"  ng-bind-html="item.long_desc"></p>
         </ons-list-item>
 		
-        <ons-list-item modifier="chevron" onclick="{{item.imgBig.fichero}}, document.getElementById('titulo_articulo').innerHTML,null ,null)">
+        <ons-list-item modifier="chevron" onclick="window.plugins.socialsharing.share(document.getElementById('dsc_articulo').innerHTML, document.getElementById('titulo_articulo').innerHTML,document.getElementById('img_video').innerHTML ,null)">
           <ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>¡Comparte este vídeo!</ons-list-item>
       </ons-list>
       <ons-list style="margin-top: 10px">
