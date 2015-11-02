@@ -132,6 +132,7 @@
 					label: fecha[0],
 					desc: short_desc,
 					long_desc: v.descripcion,
+					clean_desc: clean_desc,
 					img: img,
 					imgBig: imgBig,
 					mp4: mp4,
