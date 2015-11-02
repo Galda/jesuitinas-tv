@@ -83,12 +83,12 @@
 			<p class="item-desc" id="dsc_articulo"  ng-bind-html="item.long_desc"></p>
         </ons-list-item>
 		<div class="hidden" style="display:none">
-			<p class="item-desc" id="dsc_articulo_social"  ng-bind-html="item.clean_desc"></p>
+			<div id="dsc_articulo_social" ng-bind-html="item.clean_desc"></div>
 			<div id="img_video" class="hidden">http://jesuitinasdonosti.tv/upload/secciones-publicas/{{item.imgBig.fichero}}</div>
 			<div id="url_video" class="hidden">
 {{item.mp4}}</div>		
 		</div>
-        <ons-list-item modifier="chevron" onclick="window.plugins.socialsharing.share(document.getElementById('dsc_articulo_social').innerHTML,document.getElementById('titulo_articulo').innerHTML,document.getElementById('img_video').innerHTML ,document.getElementById('url_video').innerHTML )">
+        <ons-list-item modifier="chevron" onclick="window.plugins.socialsharing.share(document.getElementById('dsc_articulo_social').innerHTML, document.getElementById('titulo_articulo').innerHTML,document.getElementById('img_video').innerHTML ,document.getElementById('url_video').innerHTML )">
           <ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>¡Comparte este vídeo!</ons-list-item>
       </ons-list>
       <ons-list style="margin-top: 10px">
