@@ -20,6 +20,8 @@
 	<gap:plugin name="org.apache.cordova.vibration" />
 	<gap:plugin name="org.apache.cordova.camera"/>
 	<gap:plugin name="nl.x-services.plugins.socialsharing" />
+	<gap:plugin name="com.darktalker.cordova.screenshot" />
+	
 	
     <preference name="phonegap-version" value="3.7.0" />
     <!--<preference name="orientation" value="portrait" />-->
@@ -38,7 +40,7 @@
     <preference name="android-targetSdkVersion" value="19" />
     <preference name="android-installLocation" value="auto" />
     <preference name="SplashScreenDelay" value="2000" />
-  
+	<preference name="CrosswalkAnimatable" value="true" />
   
 	<allow-intent href="http://*/*"/>
 	<allow-intent href="https://*/*"/>

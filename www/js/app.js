@@ -23,7 +23,7 @@
 		}
 	};
   });
-  
+
   //Controladores  
 	myApp.controller('DetailController', function($scope, $data) {
 		$scope.item = $data.selectedItem;
@@ -220,32 +220,57 @@ function onDeviceReady() {
 	//ons.bootstrap();
 }
 
-var vibrate = function() {
-    navigator.notification.vibrate([50,50,50]);
-};
+function capturate() {
+	alert('entra');
+	var imageLink;
+    console.log('Calling from CapturePhoto');
+    navigator.screenshot.save(function(error,res){
+        if(error){
+            alert(error);
+        }else{
+            alert(res.filePath); //should be path/to/myScreenshot.jpg
+            //For android
+            imageLink = res.filePath;
+           window.plugins.socialsharing.share(null, null,'file://'+imageLink, null);
 
-function dump_pic(data) {
-    var viewport = document.getElementById('viewport');
-    viewport.style.display = "";
-    viewport.style.position = "absolute";
-    viewport.style.top = "10px";
-    viewport.style.left = "10px";
-    document.getElementById("test_img").src = "data:image/jpeg;base64," + data;
+           //For iOS
+           //window.plugins.socialsharing.share(null,   null,imageLink, null)
+		}
+    },'jpg',50,'myScreenShot');
+    navigator.notification.vibrate([50,150,50,200]);
+}
+/*
+function dump_pic(imageData) {
+	alert('ok!');
+	var imgControl = document.getElementById('img');
+	var canvas =document.getElementById('canvas');
+	imgControl.style.display = 'block';
+	imgControl.src = "data:image/jpeg;base64," + imageData;
+	//Create a watermark image object
+    watermark = new Image();
+    watermark.src = "rk.png";
+	canvas.drawImage(watermark, canvasDom.width-watermark.width, canvasDom.height - watermark.height);
 }
 
 function fail(msg) {
-    alert(msg);
+     alert('La cámara falló: ' + message);
 }
 
 function show_pic() {
     navigator.camera.getPicture(dump_pic, fail, {
-        quality : 50,
-        destinationType: Camera.DestinationType.DATA_URL,
-        targetWidth: 100,
-        targetHeight: 100
+		quality : 80,
+		destinationType : Camera.DestinationType.DATA_URL, 
+        sourceType : Camera.PictureSourceType.CAMERA, 
+        allowEdit : true,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 600,
+        targetHeight: 600,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false 
     });
 }
-/*
+*/
+/**
 function shareMe(msg,asunto,img,link){
 	msg, asunto,img,link);
 }*/
